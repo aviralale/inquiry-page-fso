@@ -163,8 +163,6 @@ export default function ServicesSection() {
           })}
         </div>
       </div>
-
-      {/* Why Choose FSO */}
     </div>
   );
 }

@@ -18,22 +18,25 @@ import {
   Sparkles,
 } from "lucide-react";
 import { useState } from "react";
+import axios from "axios";
+
 interface FormData {
-  fullName: string;
-  email: string;
-  phone: string;
-  country: string;
-  academicLevel: string;
-  message: string;
+  full_name: string;
+  email_address: string;
+  phone_number: string;
+  country_of_interest: string;
+  city_of_interest: string;
+  goals: string;
 }
+
 export default function InquiryForm() {
   const [formData, setFormData] = useState<FormData>({
-    fullName: "",
-    email: "",
-    phone: "",
-    country: "",
-    academicLevel: "",
-    message: "",
+    full_name: "",
+    email_address: "",
+    phone_number: "",
+    country_of_interest: "",
+    city_of_interest: "",
+    goals: "",
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -51,35 +54,178 @@ export default function InquiryForm() {
     "🇮🇪 Ireland",
   ];
 
+  const cityOptions: { [key: string]: string[] } = {
+    "🇺🇸 United States": [
+      "New York City",
+      "San Francisco",
+      "Washington D.C.",
+      "Chicago",
+      "Los Angeles",
+      "Boston",
+      "Nashville",
+      "Phoenix",
+      "Miami",
+      "Denver",
+      "Philadelphia",
+      "Austin",
+    ],
+    "🇬🇧 United Kingdom": [
+      "London",
+      "Oxford",
+      "Cambridge",
+      "🏴󠁧󠁢󠁳󠁣󠁴Edinburgh",
+      "Manchester",
+      "Liverpool",
+      "Birmingham",
+      "Brighton",
+      "Bristol",
+      "Bath",
+      "Coventry",
+      "Glasgow",
+    ],
+    "🇨🇦 Canada": [
+      "Toronto",
+      "Vancouver",
+      "Montreal",
+      "Ottawa",
+      "Calgary",
+      "Halifax",
+      "Winnipeg",
+      "Quebec City",
+      "Victoria",
+      "Kingston",
+      "Edmonton",
+      "Saskatoon",
+    ],
+    "🇦🇺 Australia": [
+      "Sydney",
+      "Melbourne",
+      "Brisbane",
+      "Canberra",
+      "Perth",
+      "Adelaide",
+      "Gold Coast",
+      "Hobart",
+      "Darwin",
+      "Newcastle",
+      "Wollongong",
+      "Cairns",
+    ],
+    "🇳🇿 New Zealand": [
+      "Auckland",
+      "Wellington",
+      "Christchurch",
+      "Hamilton",
+      "Tauranga",
+      "Dunedin",
+      "Napier",
+      "Palmerston North",
+      "Rotorua",
+      "Nelson",
+    ],
+    "🇨🇿 Czech Republic": [
+      "Prague",
+      "Brno",
+      "Ostrava",
+      "Plzen",
+      "Olomouc",
+      "Liberec",
+      "Hradec Kralove",
+      "Ceske Budejovice",
+      "Pardubice",
+      "Usti nad Labem",
+    ],
+    "🇯🇵 Japan": [
+      "Tokyo",
+      "Osaka",
+      "Kyoto",
+      "Nagoya",
+      "Yokohama",
+      "Nara",
+      "Hiroshima",
+      "Fukuoka",
+      "Sendai",
+      "Sapporo",
+      "Kobe",
+      "Okayama",
+    ],
+    "🇰🇷 South Korea": [
+      "Seoul",
+      "Busan",
+      "Incheon",
+      "Daegu",
+      "Daejeon",
+      "Gwangju",
+      "Ulsan",
+      "Suwon",
+      "Jeonju",
+      "Jeju City",
+    ],
+    "🇮🇪 Ireland": [
+      "Dublin",
+      "Cork",
+      "Galway",
+      "Limerick",
+      "Waterford",
+      "Kilkenny",
+      "Derry",
+      "Sligo",
+      "Athlone",
+      "Tralee",
+    ],
+  };
+
   const handleInputChange = (field: keyof FormData, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    setFormData((prev) => {
+      const newData = { ...prev, [field]: value };
+      // Reset city when country changes
+      if (field === "country_of_interest") {
+        newData.city_of_interest = "";
+      }
+      return newData;
+    });
   };
 
   const handleSubmit = async () => {
     if (!isFormValid) return;
 
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    try {
+      await axios.post("http://127.0.0.1:8000/api/inquiries/", formData);
+      console.log(formData);
+      setIsSubmitted(true);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsSubmitting(false);
+    }
 
     setTimeout(() => {
       setIsSubmitted(false);
       setFormData({
-        fullName: "",
-        email: "",
-        phone: "",
-        country: "",
-        academicLevel: "",
-        message: "",
+        full_name: "",
+        email_address: "",
+        phone_number: "",
+        country_of_interest: "",
+        city_of_interest: "",
+        goals: "",
       });
-    }, 7000);
+    }, 5000);
   };
 
-  const isFormValid = formData.fullName && formData.email && formData.country;
+  const isFormValid =
+    formData.full_name &&
+    formData.email_address &&
+    formData.country_of_interest &&
+    formData.city_of_interest;
+
+  const availableCities = formData.country_of_interest
+    ? cityOptions[formData.country_of_interest] || []
+    : [];
+
   return (
     <section className="sticky top-8">
-      <Card className="backdrop-blur-xl  border-0 shadow-2xl shadow-violet-100/50 rounded-3xl overflow-hidden">
+      <Card className="backdrop-blur-xl border-0 shadow-2xl shadow-violet-100/50 rounded-3xl overflow-hidden">
         <CardHeader className="text-center space-y-4 pb-8 bg-gradient-to-br from-white/80 to-white/60 backdrop-blur-sm">
           <div className="mx-auto w-16 h-16 bg-gradient-to-br from-violet-500 to-rose-500 rounded-2xl flex items-center justify-center shadow-lg">
             <Globe className="w-8 h-8 text-white" />
@@ -114,21 +260,21 @@ export default function InquiryForm() {
               </div>
             </div>
           ) : (
-            <form className="space-y-6">
+            <div className="space-y-6">
               {/* Full Name */}
               <div className="space-y-2">
                 <Label
-                  htmlFor="fullName"
+                  htmlFor="full_name"
                   className="text-slate-700 font-semibold flex items-center"
                 >
                   Full Name *
                 </Label>
                 <Input
-                  id="fullName"
+                  id="full_name"
                   type="text"
-                  value={formData.fullName}
+                  value={formData.full_name}
                   onChange={(e) =>
-                    handleInputChange("fullName", e.target.value)
+                    handleInputChange("full_name", e.target.value)
                   }
                   className="border-slate-200 focus:border-violet-400 focus:ring-violet-200 rounded-xl h-12 bg-white/70 backdrop-blur-sm"
                   placeholder="Enter your full name"
@@ -140,16 +286,18 @@ export default function InquiryForm() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label
-                    htmlFor="email"
+                    htmlFor="email_address"
                     className="text-slate-700 font-semibold"
                   >
                     Email Address *
                   </Label>
                   <Input
-                    id="email"
+                    id="email_address"
                     type="email"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange("email", e.target.value)}
+                    value={formData.email_address}
+                    onChange={(e) =>
+                      handleInputChange("email_address", e.target.value)
+                    }
                     className="border-slate-200 focus:border-rose-400 focus:ring-rose-200 rounded-xl h-12 bg-white/70 backdrop-blur-sm"
                     placeholder="your.email@example.com"
                     required
@@ -158,16 +306,18 @@ export default function InquiryForm() {
 
                 <div className="space-y-2">
                   <Label
-                    htmlFor="phone"
+                    htmlFor="phone_number"
                     className="text-slate-700 font-semibold"
                   >
                     Phone Number *
                   </Label>
                   <Input
-                    id="phone"
+                    id="phone_number"
                     type="tel"
-                    value={formData.phone}
-                    onChange={(e) => handleInputChange("phone", e.target.value)}
+                    value={formData.phone_number}
+                    onChange={(e) =>
+                      handleInputChange("phone_number", e.target.value)
+                    }
                     className="border-slate-200 focus:border-cyan-400 focus:ring-cyan-200 rounded-xl h-12 bg-white/70 backdrop-blur-sm"
                     placeholder="+91-9876543210"
                     required
@@ -175,44 +325,79 @@ export default function InquiryForm() {
                 </div>
               </div>
 
-              {/* Country of Interest */}
-              <div className="space-y-2">
-                <Label className="text-slate-700 font-semibold">
-                  Country of Interest *
-                </Label>
-                <Select
-                  value={formData.country}
-                  onValueChange={(value) => handleInputChange("country", value)}
-                >
-                  <SelectTrigger className="w-full border-slate-200 focus:border-violet-400 focus:ring-violet-200 rounded-xl h-12 bg-white/70 backdrop-blur-sm">
-                    <SelectValue placeholder="Select your preferred destination" />
-                  </SelectTrigger>
-                  <SelectContent className="rounded-xl bg-white/95 backdrop-blur-md">
-                    {countries.map((country) => (
-                      <SelectItem
-                        key={country}
-                        value={country}
-                        className="rounded-lg"
-                      >
-                        {country}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+              {/* Country and City Row */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label className="text-slate-700 font-semibold">
+                    Country of Interest *
+                  </Label>
+                  <Select
+                    value={formData.country_of_interest}
+                    onValueChange={(value) =>
+                      handleInputChange("country_of_interest", value)
+                    }
+                  >
+                    <SelectTrigger className="w-full border-slate-200 focus:border-violet-400 focus:ring-violet-200 rounded-xl h-12 bg-white/70 backdrop-blur-sm">
+                      <SelectValue placeholder="Select your preferred destination" />
+                    </SelectTrigger>
+                    <SelectContent className="rounded-xl bg-white/95 backdrop-blur-md">
+                      {countries.map((country) => (
+                        <SelectItem
+                          key={country}
+                          value={country}
+                          className="rounded-lg"
+                        >
+                          {country}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label className="text-slate-700 font-semibold">
+                    City of Interest *
+                  </Label>
+                  <Select
+                    value={formData.city_of_interest}
+                    onValueChange={(value) =>
+                      handleInputChange("city_of_interest", value)
+                    }
+                    disabled={!formData.country_of_interest}
+                  >
+                    <SelectTrigger className="w-full border-slate-200 focus:border-emerald-400 focus:ring-emerald-200 rounded-xl h-12 bg-white/70 backdrop-blur-sm disabled:opacity-50">
+                      <SelectValue
+                        placeholder={
+                          formData.country_of_interest
+                            ? "Select your preferred city"
+                            : "Select country first"
+                        }
+                      />
+                    </SelectTrigger>
+                    <SelectContent className="rounded-xl bg-white/95 backdrop-blur-md">
+                      {availableCities.map((city) => (
+                        <SelectItem
+                          key={city}
+                          value={city}
+                          className="rounded-lg"
+                        >
+                          {city}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
 
-              {/* Message */}
+              {/* Goals */}
               <div className="space-y-2">
-                <Label
-                  htmlFor="message"
-                  className="text-slate-700 font-semibold"
-                >
+                <Label htmlFor="goals" className="text-slate-700 font-semibold">
                   Tell Us About Your Goals
                 </Label>
                 <Textarea
-                  id="message"
-                  value={formData.message}
-                  onChange={(e) => handleInputChange("message", e.target.value)}
+                  id="goals"
+                  value={formData.goals}
+                  onChange={(e) => handleInputChange("goals", e.target.value)}
                   className="border-slate-200 focus:border-violet-400 focus:ring-violet-200 rounded-xl min-h-24 bg-white/70 backdrop-blur-sm resize-none"
                   placeholder="Share your study abroad goals, preferred programs, career aspirations, or any specific questions you have..."
                   rows={4}
@@ -242,11 +427,11 @@ export default function InquiryForm() {
               <div className="text-center space-y-2">
                 <p className="text-xs text-slate-500">* Required fields</p>
                 <p className="text-xs text-slate-400 flex justify-center items-center">
-                  <Lock className="w-4 h-4" /> Your information is secure and
-                  confidential
+                  <Lock className="w-4 h-4 mr-1" /> Your information is secure
+                  and confidential
                 </p>
               </div>
-            </form>
+            </div>
           )}
         </CardContent>
       </Card>
