@@ -51,18 +51,19 @@ const StudyAbroadForm: React.FC = () => {
       </div>
 
       <div className="relative flex flex-col-reverse z-10 max-w-7xl mx-auto px-4 py-8">
-        {/* Hero Section */}
-
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Form Section */}
           <InquiryForm />
           {/* Services Section */}
+          <div className="block sm:hidden">
+            <InquiryHeroSection />
+          </div>
           <InquiryServicesSection />
         </div>
-        <InquiryHeroSection />
+        <div className="hidden sm:block">
+          <InquiryHeroSection />
+        </div>
         <InquiryTitleSection />
-
-        {/* Bottom CTA */}
       </div>
       <ContactOverlay />
     </div>

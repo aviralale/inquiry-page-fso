@@ -49,11 +49,9 @@ export default function InquiryHeroSection() {
   }
 
   return (
-    <div className="text-center ">
-      {/* Founder Section */}
-
+    <div>
       {/* Stats Section */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-16">
+      <div className="grid grid-cols-2 sm:mb-6 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
         <div className="bg-white/40 backdrop-blur-md rounded-2xl p-6 border border-white/20">
           <div className="text-3xl font-bold text-violet-600 mb-2">
             {animatedNumbers.students.toLocaleString()}+

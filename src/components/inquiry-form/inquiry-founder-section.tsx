@@ -7,7 +7,7 @@ export default function InquiryFounderSection() {
           <div className="relative">
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden ring-4 ring-white/50 shadow-2xl">
               <img
-                src="/bhavik-siddhpura.JPG"
+                src="/bhavik-siddhpura-min.JPG"
                 alt="Bhavik Siddhpura - Founder & CEO"
                 className="w-full h-full object-cover"
               />

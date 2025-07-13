@@ -1,7 +1,7 @@
 export default function InquiryTitleSection() {
   return (
     <div className="flex flex-col items-center">
-      <div className="inline-flex items-center gap-4 px-4 py-2 mb-6">
+      <div className="inline-flex items-center gap-4 px-4 py-2">
         <img
           src="/FSO Logo.png"
           className="h-24 drop-shadow-2xl"
@@ -13,10 +13,9 @@ export default function InquiryTitleSection() {
         Dream. Study. Achieve.
       </h1>
 
-      <p className="text-xl text-center text-slate-600 max-w-3xl mx-auto mb-8 leading-relaxed">
-        Turn your academic dreams into reality with our expert guidance. We've
-        helped thousands of students gain admission to world-class universities
-        across the globe.
+      <p className=" text-center text-slate-600 max-w-3xl mx-auto mb-8 leading-relaxed">
+        Make your academic dreams come true with our expert guidance—trusted by
+        thousands to get into top global universities.
       </p>
     </div>
   );
