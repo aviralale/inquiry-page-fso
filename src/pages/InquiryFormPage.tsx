@@ -4,6 +4,8 @@ import { Globe, GraduationCap, Sparkles } from "lucide-react";
 import InquiryHeroSection from "@/components/inquiry-form/inquiry-hero-section";
 import InquiryServicesSection from "@/components/inquiry-form/inquiry-services-section";
 import InquiryForm from "@/components/inquiry-form/inquiry-form";
+import InquiryTitleSection from "@/components/inquiry-form/inquiry-title-section";
+import ContactOverlay from "@/components/inquiry-form/contact-overlay";
 
 const StudyAbroadForm: React.FC = () => {
   return (
@@ -48,20 +50,21 @@ const StudyAbroadForm: React.FC = () => {
         </div>
       </div>
 
-      <div className="relative flex flex-col z-10 max-w-7xl mx-auto px-4 py-8">
+      <div className="relative flex flex-col-reverse z-10 max-w-7xl mx-auto px-4 py-8">
         {/* Hero Section */}
-        <InquiryHeroSection />
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Services Section */}
-          <InquiryServicesSection />
-
           {/* Form Section */}
           <InquiryForm />
+          {/* Services Section */}
+          <InquiryServicesSection />
         </div>
+        <InquiryHeroSection />
+        <InquiryTitleSection />
 
         {/* Bottom CTA */}
       </div>
+      <ContactOverlay />
     </div>
   );
 };

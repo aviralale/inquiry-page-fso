@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import axios from "axios";
+import InquiryFounderSection from "./inquiry-founder-section";
 
 interface FormData {
   full_name: string;
@@ -435,6 +436,7 @@ export default function InquiryForm() {
           )}
         </CardContent>
       </Card>
+      <InquiryFounderSection />
     </section>
   );
 }

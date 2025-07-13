@@ -154,7 +154,7 @@ export default function ServicesSection() {
                   <h4 className="font-semibold text-slate-800 mb-2 text-lg">
                     {service.title}
                   </h4>
-                  <p className="text-sm text-slate-600 leading-relaxed">
+                  <p className="text-sm hidden sm:block text-slate-600 leading-relaxed">
                     {service.description}
                   </p>
                 </div>
