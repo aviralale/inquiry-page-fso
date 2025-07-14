@@ -6,6 +6,8 @@ import InquiryServicesSection from "@/components/inquiry-form/inquiry-services-s
 import InquiryForm from "@/components/inquiry-form/inquiry-form";
 import InquiryTitleSection from "@/components/inquiry-form/inquiry-title-section";
 import ContactOverlay from "@/components/inquiry-form/contact-overlay";
+import InquiryServicesSectionOne from "@/components/inquiry-form/inquiry-services-section-one";
+import InquiryFounderSection from "@/components/inquiry-form/inquiry-founder-section";
 
 const StudyAbroadForm: React.FC = () => {
   return (
@@ -25,7 +27,7 @@ const StudyAbroadForm: React.FC = () => {
 
         {/* Floating Icons */}
         <div
-          className="absolute top-32 right-32 animate-bounce"
+          className="absolute top-16 right-16 animate-bounce"
           style={{ animationDelay: "0.5s" }}
         >
           <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
@@ -50,20 +52,19 @@ const StudyAbroadForm: React.FC = () => {
         </div>
       </div>
 
-      <div className="relative flex flex-col-reverse z-10 max-w-7xl mx-auto px-4 py-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Form Section */}
-          <InquiryForm />
-          {/* Services Section */}
-          <div className="block sm:hidden">
-            <InquiryHeroSection />
-          </div>
-          <InquiryServicesSection />
-        </div>
-        <div className="hidden sm:block">
-          <InquiryHeroSection />
-        </div>
+      <div className="relative container flex flex-col gap-8 z-10 max-w-7xl mx-auto px-4 py-8">
         <InquiryTitleSection />
+        <div className="flex flex-col-reverse md:flex-row gap-8">
+          <div className="flex gap-8 flex-col">
+            <InquiryHeroSection />
+            <InquiryServicesSection />
+          </div>
+          <div className="flex gap-8 flex-col">
+            <InquiryForm />
+            <InquiryFounderSection />
+          </div>
+        </div>
+        <InquiryServicesSectionOne />
       </div>
       <ContactOverlay />
     </div>

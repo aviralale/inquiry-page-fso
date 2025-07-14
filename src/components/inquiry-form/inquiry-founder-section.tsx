@@ -2,7 +2,7 @@ import { Quote, Star } from "lucide-react";
 export default function InquiryFounderSection() {
   return (
     <>
-      <div className="bg-white/40 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg mt-8 max-w-4xl mx-auto">
+      <div className="bg-white rounded-3xl p-8 border border-white/20 shadow-lg max-w-4xl mx-auto">
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="relative">
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden ring-4 ring-white/50 shadow-2xl">

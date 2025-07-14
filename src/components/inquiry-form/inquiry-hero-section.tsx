@@ -51,8 +51,8 @@ export default function InquiryHeroSection() {
   return (
     <div>
       {/* Stats Section */}
-      <div className="grid grid-cols-2 sm:mb-6 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-        <div className="bg-white/40 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+      <div className="grid grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="bg-white backdrop-blur-md rounded-2xl p-6 border  shadow-xl border-white/80">
           <div className="text-3xl font-bold text-violet-600 mb-2">
             {animatedNumbers.students.toLocaleString()}+
           </div>
@@ -60,7 +60,7 @@ export default function InquiryHeroSection() {
             Student Success Stories
           </div>
         </div>
-        <div className="bg-white/40 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+        <div className="bg-white backdrop-blur-md rounded-2xl p-6 border  shadow-xl border-white/80">
           <div className="text-3xl font-bold text-cyan-500 mb-2">
             {animatedNumbers.universities}+
           </div>
@@ -68,7 +68,7 @@ export default function InquiryHeroSection() {
             Partner Universities
           </div>
         </div>
-        <div className="bg-white/40 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+        <div className="bg-white backdrop-blur-md rounded-2xl p-6 border  shadow-xl border-white/80">
           <div className="text-3xl font-bold text-emerald-500 mb-2">
             {animatedNumbers.scholarships}%
           </div>
@@ -76,7 +76,7 @@ export default function InquiryHeroSection() {
             Scholarships Available
           </div>
         </div>
-        <div className="bg-white/40 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+        <div className="bg-white backdrop-blur-md rounded-2xl p-6 border  shadow-xl border-white/80">
           <div className="text-3xl font-bold text-rose-500 mb-2">
             ₹{animatedNumbers.coursePrice} Lakhs
           </div>

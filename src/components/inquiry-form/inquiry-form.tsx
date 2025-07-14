@@ -19,7 +19,6 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import axios from "axios";
-import InquiryFounderSection from "./inquiry-founder-section";
 
 interface FormData {
   full_name: string;
@@ -226,8 +225,8 @@ export default function InquiryForm() {
 
   return (
     <section className="sticky top-8">
-      <Card className="backdrop-blur-xl border-0 shadow-2xl shadow-violet-100/50 rounded-3xl overflow-hidden">
-        <CardHeader className="text-center space-y-4 pb-8 bg-gradient-to-br from-white/80 to-white/60 backdrop-blur-sm">
+      <Card className="backdrop-blur-xl border-0 shadow-2xl shadow-violet-100/50 rounded-3xl overflow-hidden px-8">
+        <CardHeader className="text-center bg-gradient-to-br from-white/80 to-white/60 backdrop-blur-sm">
           <div className="mx-auto w-16 h-16 bg-gradient-to-br from-violet-500 to-rose-500 rounded-2xl flex items-center justify-center shadow-lg">
             <Globe className="w-8 h-8 text-white" />
           </div>
@@ -239,7 +238,7 @@ export default function InquiryForm() {
           </p>
         </CardHeader>
 
-        <CardContent className="p-8">
+        <CardContent className="p-2">
           {isSubmitted ? (
             <div className="text-center py-12 space-y-6">
               <div className="mx-auto w-20 h-20 bg-gradient-to-br from-emerald-400 to-green-500 rounded-full flex items-center justify-center shadow-lg">
@@ -436,7 +435,6 @@ export default function InquiryForm() {
           )}
         </CardContent>
       </Card>
-      <InquiryFounderSection />
     </section>
   );
 }
