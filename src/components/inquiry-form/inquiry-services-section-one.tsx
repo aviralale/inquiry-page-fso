@@ -10,7 +10,7 @@ import {
 
 export default function InquiryServicesSectionOne() {
   return (
-    <div className="bg-white/50 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-lg">
+    <div className="bg-white backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-lg">
       <div className="flex items-center mb-6">
         <Heart className="w-6 h-6 text-rose-500 mr-3" />
         <h3 className="text-xl font-bold text-slate-800">Why Choose FSO?</h3>
