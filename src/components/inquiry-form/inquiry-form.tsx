@@ -224,8 +224,8 @@ export default function InquiryForm() {
     : [];
 
   return (
-    <section className="sticky top-8">
-      <Card className="backdrop-blur-xl border-0 shadow-2xl shadow-violet-100/50 rounded-3xl overflow-hidden px-8">
+    <section className="sticky  bg-transparent top-8">
+      <Card className=" border-0 shadow-xl rounded-3xl overflow-hidden px-8">
         <CardHeader className="text-center bg-gradient-to-br from-white/80 to-white/60 backdrop-blur-sm">
           <div className="mx-auto w-16 h-16 bg-gradient-to-br from-violet-500 to-rose-500 rounded-2xl flex items-center justify-center shadow-lg">
             <Globe className="w-8 h-8 text-white" />
