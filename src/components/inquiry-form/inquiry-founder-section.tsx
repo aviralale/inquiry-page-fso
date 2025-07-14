@@ -2,7 +2,7 @@ import { Quote, Star } from "lucide-react";
 export default function InquiryFounderSection() {
   return (
     <>
-      <div className="bg-white rounded-3xl p-8 border border-white/20 shadow-lg max-w-4xl mx-auto">
+      <div className="bg-white rounded-3xl p-6 border border-white/20 shadow-2xl max-w-4xl mx-auto">
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="relative">
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden ring-4 ring-white/50 shadow-2xl">
@@ -19,7 +19,7 @@ export default function InquiryFounderSection() {
 
           <div className="flex-1 text-center md:text-left">
             <Quote className="w-8 h-8 text-violet-400 mx-auto md:mx-0 mb-4" />
-            <blockquote className="text-lg md:text-xl text-slate-700 italic mb-4 leading-relaxed">
+            <blockquote className="text-lg text-slate-700 italic mb-2 leading-relaxed">
               "Every student deserves a chance to chase their dreams. At FSO,
               we're your partners shaping a brighter future."
             </blockquote>
@@ -28,10 +28,7 @@ export default function InquiryFounderSection() {
                 Bhavik Siddhpura
               </div>
               <div className="text-sm text-violet-600 font-medium">
-                Founder & CEO, FSO
-              </div>
-              <div className="text-xs text-slate-500">
-                Transforming Lives Through Education
+                Founder & CEO, First Step Overseas
               </div>
             </div>
           </div>
